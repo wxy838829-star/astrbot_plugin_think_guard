@@ -1,0 +1,20 @@
+name: astrbot_plugin_think_guard
+display_name: 思考外露拦截
+desc: |
+  挡住模型把「开头的内部推理」漏进聊天正文。
+
+  规则和 Go 版 leadingThought 一致：只处理开头显式带标签的内部推理
+  （<analysis> / <thinking> / <think> / 内部 <summary>），
+  无标签的普通回复和正文中间出现的标签都不动。
+
+  三个拦截点：LLM 最终响应、消息链发送前、provider 流式出口（chunk 级）。
+  支持 /thinkguard 看状态，/thinkguard reload 重装 provider 补丁。
+short_desc: 开头思考标签漏进正文时自动拦下
+version: 1.0.0
+author: wxy838829-star
+repo: https://github.com/wxy838829-star/astrbot_plugin_think_guard
+astrbot_version: ">=4.17.0"
+tags:
+  - 过滤
+  - 思考
+  - 输出

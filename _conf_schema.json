@@ -1,0 +1,45 @@
+{
+  "enabled": {
+    "description": "启用过滤",
+    "hint": "关掉后所有拦截点都不动作，等于卸载了这个插件。",
+    "type": "bool",
+    "default": true
+  },
+  "tags": {
+    "description": "要拦的开头标签",
+    "hint": "只有回复「开头」出现这些标签时才会吞掉整段。可增删，例如 <reasoning>。中间出现的标签一律不动。",
+    "type": "list",
+    "items": { "type": "string" },
+    "default": ["<analysis>", "<thinking>", "<think>"]
+  },
+  "strip_summary": {
+    "description": "吞内部 <summary>",
+    "hint": "只认「以 <summary> 开头且里面含 primary request and intent」的那种内部摘要；普通 summary 照常显示。",
+    "type": "bool",
+    "default": true
+  },
+  "patch_providers": {
+    "description": "流式块级过滤",
+    "hint": "打开后接管 provider 的 text_chat_stream，边生成边吞，流式输出也不会漏出思考。关掉只在最终响应处过滤。",
+    "type": "bool",
+    "default": true
+  },
+  "handle_llm_response": {
+    "description": "拦截 LLM 最终响应",
+    "hint": "在 on_llm_response 处洗一遍完整响应，主要对非流式和第三方 runner 生效。",
+    "type": "bool",
+    "default": true
+  },
+  "handle_result_chain": {
+    "description": "发送前再洗一遍",
+    "hint": "在 on_decorating_result 处检查消息链开头，兜住拼进来的文本。",
+    "type": "bool",
+    "default": true
+  },
+  "debug": {
+    "description": "输出调试日志",
+    "hint": "每次拦截都写一行日志，排查漏思考时打开。",
+    "type": "bool",
+    "default": false
+  }
+}
